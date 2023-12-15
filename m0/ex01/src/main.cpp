@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:03:07 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/15 20:17:14 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/15 21:33:25 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,32 @@ int	main(void)
 	PhoneBook	PhoneBook;
 	std::string	cmd;
 
+	std::cout	<< std::endl
+				<< "Welcome to the awesome phonebook written(some time after 1985) by: jhesso!"
+				<< std::endl;
 	while (1)
 	{
 		cmd = GetCommand();
-		std::cout << "cmd: " << cmd << std::endl;
 		if (cmd == "ADD")
 		{
-			std::cout << "adding new contact..." << std::endl;
 			if (!PhoneBook.AddContact())
 				break;
 		}
 		else if (cmd == "SEARCH")
 		{
-			std::cout << "searching from contacts..." << std::endl;
 			if (!PhoneBook.SearchContact())
 				break;
 		}
 		else if (cmd == "EXIT")
 			break;
+		else
+		{
+			std::cout	<< "Please enter one of the following commands: " << std::endl
+						<< "\tADD: add a new contact" << std::endl
+						<< "\tSEARCH: search the contact list" << std::endl
+						<< "\tEXIT: exit the awesome phonebook" << std::endl;
+		}
 	}
+	std::cout << "Thank you for using the awesome phonebook!" << std::endl;
 	return (0);
 }

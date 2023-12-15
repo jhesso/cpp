@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 16:59:14 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/15 20:12:10 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/15 21:06:57 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHONEBOOK_CLASS_HPP
 
 # include <iostream>
+# include <iomanip>
 # include "Contact.class.hpp"
 
 class PhoneBook
@@ -25,7 +26,11 @@ class PhoneBook
 
 		std::string		GetInput(std::string const prompt);
 		void			IncrementIndex(void);
+		void			PrintContactTable(void);
 		void			PrintContacts(void);
+		bool			PrintContactByIndex(std::string input);
+		void			PrintContactInfoToTable(int i);
+		void			PrintTableString(std::string str);
 
 	public:
 		PhoneBook(void);

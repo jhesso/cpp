@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:00:06 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/15 20:20:51 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/15 21:26:57 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,10 @@ PhoneBook::PhoneBook(void)
 {
 	this->Index = 0;
 	this->Abort = false;
-	std::cout << "PhoneBook constructor called" << std::endl
-	<< "index set to: " << this->Index << std::endl;
 }
 
 PhoneBook::~PhoneBook(void)
-{
-	std::cout << "PhoneBook deconstructor called" << std::endl;
-}
+{}
 
 /******************************************************************************/
 /*							PRIVATE FUNCTIONS								  */
@@ -78,6 +74,60 @@ void	PhoneBook::PrintContacts(void)
 	}
 }
 
+void	PhoneBook::PrintContactTable(void)
+{
+	std::cout	<< "+----------+----------+----------+----------+" << std::endl
+				<< "|   INDEX  |FIRST NAME| LAST NAME| NICKNAME |" << std::endl
+				<< "+----------+----------+----------+----------+" << std::endl;
+	for (int i = 0; i < 8; i++)
+		PrintContactInfoToTable(i);
+	std::cout << std::endl;
+}
+
+void	PhoneBook::PrintContactInfoToTable(int i)
+{
+	if (this->Contacts[i].isEmpty())
+		return;
+	std::cout << "|" << std::setw(10) << i << "|";
+	PrintTableString(this->Contacts[i].GetFirstName());
+	PrintTableString(this->Contacts[i].GetLastName());
+	PrintTableString(this->Contacts[i].GetNickname());
+	std::cout	<< std::endl
+				<< "+----------+----------+----------+----------+" << std::endl;
+}
+
+void	PhoneBook::PrintTableString(std::string str)
+{
+	if (str.length() > 10)
+	{
+		str.resize(9);
+		str += ".";
+	}
+	std::cout << std::setw(10) << str << "|";
+}
+
+bool	PhoneBook::PrintContactByIndex(std::string str)
+{
+	int	index;
+
+	if (str.length() == 1 && std::isdigit(str[0]))
+	{
+		index = str[0] - '0';
+		if (index >= 0 && index < 8)
+		{
+			if (this->Contacts[index].PrintContactInfo())
+				return (true);
+			else
+			{
+				std::cout << "Error: No record at specified index." << std::endl;
+				return (false);
+			}
+		}
+	}
+	std::cout << "Error: \'" << index << "\' is not a valid index." << std::endl;
+	return (false);
+}
+
 /******************************************************************************/
 /*							PUBLIC FUNCTIONS								  */
 /******************************************************************************/
@@ -86,10 +136,10 @@ bool	PhoneBook::AddContact(void)
 {
 	std::string	input;
 
+	std::cout << std::endl << "+------------ New Contact Menu -------------+" << std::endl << std::endl;
 	while (!Abort)
 	{
 		input = GetInput("first name");
-		std::cout << "input read successfully" << std::endl;
 		if (Abort || this->Contacts[Index].SetFirstName(input))
 			break;
 	}
@@ -124,12 +174,19 @@ bool	PhoneBook::AddContact(void)
 	}
 	std::cout << "Contact saved successfully!" << std::endl;
 	IncrementIndex();
-	PrintContacts();
 	return (true);
 }
 
 bool	PhoneBook::SearchContact(void)
 {
+	std::string	input;
+
+	std::cout << std::endl << "+-------------- Search Menu ----------------+" << std::endl << std::endl;
 	std::cout << "searching contacts..." << std::endl;
+	this->PrintContactTable();
+	input = GetInput("index of contact to display");
+	if (input.empty())
+		return (false);
+	this->PrintContactByIndex(input);
 	return (true);
 }

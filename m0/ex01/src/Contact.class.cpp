@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:00:03 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/15 20:26:47 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/15 21:21:54 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,35 @@
 /******************************************************************************/
 
 Contact::Contact(void)
-{
-	std::cout << "Contact constructor called" << std::endl;
-}
+{}
 
 Contact::~Contact(void)
-{
-	std::cout << "Contact deconstructor called" << std::endl;
-}
+{}
 
 /******************************************************************************/
 /*							PUBLIC FUNCTIONS								  */
 /******************************************************************************/
+
+bool	Contact::isEmpty(void)
+{
+	if (this->FirstName.empty() || this->LastName.empty()
+		|| this->Nickname.empty() || this->Number.empty()
+		|| this->Secret.empty())
+		return (true);
+	return (false);
+}
+
+bool	Contact::PrintContactInfo(void)
+{
+	if (this->isEmpty())
+		return (false);
+	std::cout	<< "First name: " << this->GetFirstName() << std::endl
+				<< "Last name: " << this->GetLastName() << std::endl
+				<< "Nickname: " << this->GetNickname() << std::endl
+				<< "Phone number: " << this->GetNumber() << std::endl
+				<< "Darkest secret: " << this->GetSecret() << std::endl;
+	return (true);
+}
 
 bool	Contact::SetFirstName(std::string FirstName)
 {
