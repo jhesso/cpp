@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 16:59:14 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/15 17:30:11 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/15 20:12:10 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,13 @@
 class PhoneBook
 {
 	private:
-		Contact			contacts[8];
-		unsigned int	index;
+		Contact			Contacts[8];
+		unsigned int	Index;
+		bool			Abort;
+
+		std::string		GetInput(std::string const prompt);
+		void			IncrementIndex(void);
+		void			PrintContacts(void);
 
 	public:
 		PhoneBook(void);

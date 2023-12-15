@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:03:07 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/15 17:56:13 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/15 20:17:14 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,14 @@ int	main(void)
 		if (cmd == "ADD")
 		{
 			std::cout << "adding new contact..." << std::endl;
+			if (!PhoneBook.AddContact())
+				break;
 		}
 		else if (cmd == "SEARCH")
 		{
 			std::cout << "searching from contacts..." << std::endl;
+			if (!PhoneBook.SearchContact())
+				break;
 		}
 		else if (cmd == "EXIT")
 			break;

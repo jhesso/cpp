@@ -6,11 +6,15 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:00:03 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/15 17:23:53 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/15 20:26:47 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.class.hpp"
+
+/******************************************************************************/
+/*						CONSTRUCTOR & DESTRUCTOR							  */
+/******************************************************************************/
 
 Contact::Contact(void)
 {
@@ -22,42 +26,76 @@ Contact::~Contact(void)
 	std::cout << "Contact deconstructor called" << std::endl;
 }
 
-void	Contact::SetFirstName(std::string FirstName)
+/******************************************************************************/
+/*							PUBLIC FUNCTIONS								  */
+/******************************************************************************/
+
+bool	Contact::SetFirstName(std::string FirstName)
 {
+	if (FirstName.length() == 0)
+	{
+		std::cout << "Field cannot be empty!" << std::endl;
+		return (false);
+	}
 	FirstName[0] = std::toupper(FirstName[0]);
 	for (int i = 1; FirstName[i]; i++)
 		FirstName[i] = std::tolower(FirstName[i]);
 	this->FirstName = FirstName;
+	return (true);
 }
 
-void	Contact::SetLastName(std::string LastName)
+bool	Contact::SetLastName(std::string LastName)
 {
+	if (LastName.length() == 0)
+	{
+		std::cout << "Field cannot be empty!" << std::endl;
+		return (false);
+	}
 	LastName[0] = std::toupper(LastName[0]);
 	for (int i = 1; LastName[i]; i++)
 		LastName[i] = std::tolower(LastName[i]);
 	this->LastName = LastName;
+	return (true);
 }
 
-void	Contact::SetNickname(std::string Nickname)
+bool	Contact::SetNickname(std::string Nickname)
 {
+	if (Nickname.length() == 0)
+	{
+		std::cout << "Field cannot be empty!" << std::endl;
+		return (false);
+	}
 	Nickname[0] = std::toupper(Nickname[0]);
 	for (int i = 1; Nickname[i]; i++)
 		Nickname[i] = std::tolower(Nickname[i]);
 	this->Nickname = Nickname;
+	return (true);
 }
 
 /*
 *	Maybe should add some error checking here unless its done when actually
 *	getting the input (phone number should only contain digits and maybe + first)
 */
-void	Contact::SetNumber(std::string Number)
+bool	Contact::SetNumber(std::string Number)
 {
+	if (Number.length() == 0)
+	{
+		std::cout << "Field cannot be empty!" << std::endl;
+		return (false);
+	}
 	this->Number = Number;
+	return (true);
 }
 
-void	Contact::SetSecret(std::string Secret)
+bool	Contact::SetSecret(std::string Secret)
 {
+	if (Secret.length() == 0)
+	{
+		std::cout << "Field cannot be empty!" << std::endl;
+		return (false);
+	}
 	this->Secret = Secret;
+	return (true);
 }
 
 std::string	Contact::GetFirstName(void)
