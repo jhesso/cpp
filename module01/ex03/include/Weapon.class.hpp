@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:22:57 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/19 16:31:27 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/20 14:03:53 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@ class Weapon
 		std::string	_type;
 
 	public:
-		Weapon(void);
-		Weapon(std::string type);
+		Weapon(std::string const type);
 		~Weapon(void);
 
-		std::string	getType(void);
-		void		setType(std::string type);
+		std::string const	&getType(void) const;
+		void				setType(std::string const type);
 };
 
 #endif

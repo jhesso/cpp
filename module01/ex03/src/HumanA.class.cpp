@@ -6,52 +6,35 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:41:07 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/19 16:52:49 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/20 14:10:40 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
+#include <string>
 #include "HumanA.class.hpp"
 
 /******************************************************************************/
 /*						CONSTRUCTORS & DESTRUCTORS							  */
 /******************************************************************************/
 
-HumanA::HumanA(std::string name, Weapon weapon): _name(name), _weapon(weapon)
-{}
+HumanA::HumanA(std::string const name, Weapon const &weapon)
+				: _name(name), _weapon(weapon)
+{
+	std::cout << this->_name << " enters the fight!" << std::endl;
+}
 
 HumanA::~HumanA(void)
-{}
-
-/******************************************************************************/
-/*								GETTERS										  */
-/******************************************************************************/
-
-std::string	HumanA::getName(void)
 {
-	return (this->_name);
+	std::cout << this->_name << " leaves the fight" << std::endl;
 }
-
-Weapon	HumanA::getWeapon(void)
-{
-	return (this->_weapon);
-}
-
-/******************************************************************************/
-/*								SETTERS										  */
-/******************************************************************************/
-
-void	HumanA::setWeapon(Weapon weapon)
-{
-	this->_weapon.~Weapon();
-	this->_weapon = weapon;
-}
-
 
 /******************************************************************************/
 /*							PUBLIC FUNCTIONS								  */
 /******************************************************************************/
 
-void	HumanA::attack(void)
+void	HumanA::attack(void) const
 {
-	std::cout << _name << " attacks with their " << _weapon.getType() << std::endl;
+	std::cout	<< this->_name << " attacks with their "
+				<< this->_weapon.getType() << std::endl;
 }
