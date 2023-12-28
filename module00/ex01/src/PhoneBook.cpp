@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.class.cpp                                :+:      :+:    :+:   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:00:06 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/15 21:26:57 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/28 12:07:26 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.class.hpp"
+#include "PhoneBook.hpp"
 
 /******************************************************************************/
 /*						CONSTRUCTOR & DESTRUCTOR							  */
@@ -108,7 +108,7 @@ void	PhoneBook::PrintTableString(std::string str)
 
 bool	PhoneBook::PrintContactByIndex(std::string str)
 {
-	int	index;
+	int	index = 0;
 
 	if (str.length() == 1 && std::isdigit(str[0]))
 	{

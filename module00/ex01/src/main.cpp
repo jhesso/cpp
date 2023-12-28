@@ -6,11 +6,11 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:03:07 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/15 21:33:25 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/28 12:04:42 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.class.hpp"
+#include "PhoneBook.hpp"
 
 /*
 *	GetCommand()

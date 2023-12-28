@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 16:59:14 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/15 21:06:57 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/28 12:03:57 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <iostream>
 # include <iomanip>
-# include "Contact.class.hpp"
+# include "Contact.hpp"
 
 class PhoneBook
 {
@@ -25,6 +25,7 @@ class PhoneBook
 		bool			Abort;
 
 		std::string		GetInput(std::string const prompt);
+
 		void			IncrementIndex(void);
 		void			PrintContactTable(void);
 		void			PrintContacts(void);
