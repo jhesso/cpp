@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:00:06 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/28 12:07:26 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/28 16:26:16 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ bool	PhoneBook::PrintContactByIndex(std::string str)
 			}
 		}
 	}
-	std::cout << "Error: \'" << index << "\' is not a valid index." << std::endl;
+	std::cout << "Error: \'" << str << "\' is not a valid index." << std::endl;
 	return (false);
 }
 

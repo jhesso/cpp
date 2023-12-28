@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:00:03 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/28 12:04:12 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/28 16:42:46 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,27 @@ bool	Contact::PrintContactInfo(void)
 	return (true);
 }
 
+bool	Contact::forbiddenChar(std::string str)
+{
+	for (int i = 0; str[i]; i++)
+	{
+		if (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
+			|| str[i] == '\f' || str[i] == '\r')
+			return (true);
+	}
+	return (false);
+}
+
 bool	Contact::SetFirstName(std::string FirstName)
 {
-	if (FirstName.length() == 0)
+	if (FirstName.length() == 0 || FirstName.empty())
 	{
 		std::cout << "Field cannot be empty!" << std::endl;
+		return (false);
+	}
+	if (forbiddenChar(FirstName))
+	{
+		std::cout << "Forbidden character in input!" << std::endl;
 		return (false);
 	}
 	FirstName[0] = std::toupper(FirstName[0]);
@@ -68,6 +84,11 @@ bool	Contact::SetLastName(std::string LastName)
 		std::cout << "Field cannot be empty!" << std::endl;
 		return (false);
 	}
+	if (forbiddenChar(LastName))
+	{
+		std::cout << "Forbidden character in input!" << std::endl;
+		return (false);
+	}
 	LastName[0] = std::toupper(LastName[0]);
 	for (int i = 1; LastName[i]; i++)
 		LastName[i] = std::tolower(LastName[i]);
@@ -80,6 +101,11 @@ bool	Contact::SetNickname(std::string Nickname)
 	if (Nickname.length() == 0)
 	{
 		std::cout << "Field cannot be empty!" << std::endl;
+		return (false);
+	}
+	if (forbiddenChar(Nickname))
+	{
+		std::cout << "Forbidden character in input!" << std::endl;
 		return (false);
 	}
 	Nickname[0] = std::toupper(Nickname[0]);
@@ -100,6 +126,11 @@ bool	Contact::SetNumber(std::string Number)
 		std::cout << "Field cannot be empty!" << std::endl;
 		return (false);
 	}
+	if (forbiddenChar(Number))
+	{
+		std::cout << "Forbidden character in input!" << std::endl;
+		return (false);
+	}
 	this->Number = Number;
 	return (true);
 }
@@ -109,6 +140,11 @@ bool	Contact::SetSecret(std::string Secret)
 	if (Secret.length() == 0)
 	{
 		std::cout << "Field cannot be empty!" << std::endl;
+		return (false);
+	}
+	if (forbiddenChar(Secret))
+	{
+		std::cout << "Forbidden character in input!" << std::endl;
 		return (false);
 	}
 	this->Secret = Secret;

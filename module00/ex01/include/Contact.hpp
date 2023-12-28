@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 16:59:26 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/28 12:03:36 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/28 16:42:15 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class Contact
 		~Contact(void);
 		bool		isEmpty(void);
 		bool		PrintContactInfo(void);
+		bool		forbiddenChar(std::string str);
 
 		bool		SetFirstName(std::string FirstName);
 		bool		SetLastName(std::string LastName);
