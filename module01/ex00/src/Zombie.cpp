@@ -1,40 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.class.cpp                                   :+:      :+:    :+:   */
+/*   Zombie.class.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 16:41:07 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/20 14:10:40 by jhesso           ###   ########.fr       */
+/*   Created: 2023/12/18 20:44:44 by jhesso            #+#    #+#             */
+/*   Updated: 2023/12/28 12:12:38 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <string>
-#include "HumanA.class.hpp"
+#include "Zombie.hpp"
 
 /******************************************************************************/
 /*						CONSTRUCTORS & DESTRUCTORS							  */
 /******************************************************************************/
 
-HumanA::HumanA(std::string const name, Weapon const &weapon)
-				: _name(name), _weapon(weapon)
+Zombie::Zombie(void)
 {
-	std::cout << this->_name << " enters the fight!" << std::endl;
+	std::cout << "A wild zombie appeared!" << std::endl;
 }
 
-HumanA::~HumanA(void)
+Zombie::Zombie(std::string name) : _name(name)
 {
-	std::cout << this->_name << " leaves the fight" << std::endl;
+	std::cout << "A wild zombie called " << _name << " appeared!" << std::endl;
+}
+
+Zombie::~Zombie(void)
+{
+	std::cout << _name << ": is dead" << std::endl;
+}
+
+/******************************************************************************/
+/*								GETTERS										  */
+/******************************************************************************/
+
+std::string	Zombie::_getName(void)
+{
+	return (this->_name);
 }
 
 /******************************************************************************/
 /*							PUBLIC FUNCTIONS								  */
 /******************************************************************************/
 
-void	HumanA::attack(void) const
+void	Zombie::announce(void)
 {
-	std::cout	<< this->_name << " attacks with their "
-				<< this->_weapon.getType() << std::endl;
+	std::cout	<< this->_getName() << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

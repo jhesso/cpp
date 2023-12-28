@@ -6,12 +6,12 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:10:03 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/21 16:10:21 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/28 13:02:55 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Fixed.class.hpp"
+#include "Fixed.hpp"
 
 int	main( void )
 {

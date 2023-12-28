@@ -6,12 +6,12 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:26:39 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/20 14:32:37 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/28 12:54:15 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Weapon.class.hpp"
+#include "Weapon.hpp"
 
 /******************************************************************************/
 /*						CONSTRUCTORS & DESTRUCTORS							  */

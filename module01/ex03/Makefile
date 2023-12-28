@@ -10,9 +10,9 @@ SRC_PATH	=	src/
 OBJ_PATH	=	obj/
 INC_PATH	=	include/
 SRC			=	main.cpp \
-				Weapon.class.cpp \
-				HumanA.class.cpp \
-				HumanB.class.cpp
+				Weapon.cpp \
+				HumanA.cpp \
+				HumanB.cpp
 SRCS		=	$(addprefix $(SRC_PATH), $(SRC))
 OBJ			=	$(SRC:.cpp=.o)
 OBJS		=	$(addprefix $(OBJ_PATH), $(OBJ))

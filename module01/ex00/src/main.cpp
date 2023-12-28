@@ -6,11 +6,11 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:38:48 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/18 21:22:08 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/28 12:11:55 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.class.hpp"
+#include "Zombie.hpp"
 
 void	randomChump(std::string name);
 Zombie*	newZombie(std::string name);

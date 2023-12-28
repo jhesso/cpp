@@ -6,12 +6,12 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 17:46:47 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/20 17:50:59 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/28 13:00:08 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Harl.class.hpp"
+#include "Harl.hpp"
 
 int	main(void)
 {

@@ -6,14 +6,14 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:10:03 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/22 17:57:59 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/28 13:06:03 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <climits>
 #include <string>
-#include "Fixed.class.hpp"
+#include "Fixed.hpp"
 
 #define RESET "\e[0m"
 #define GREEN "\e[32m"

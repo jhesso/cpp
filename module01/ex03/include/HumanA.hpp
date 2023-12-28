@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.class.hpp                                    :+:      :+:    :+:   */
+/*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/21 16:02:18 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/21 16:05:09 by jhesso           ###   ########.fr       */
+/*   Created: 2023/12/19 16:32:38 by jhesso            #+#    #+#             */
+/*   Updated: 2023/12/28 12:53:30 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_CLASS_HPP
-# define FIXED_CLASS_HPP
+#ifndef HUMANA_HPP
+# define HUMANA_HPP
 
-class Fixed
+# include <string>
+# include "Weapon.hpp"
+
+class HumanA
 {
 	private:
-		int			_raw;
-		static int const	_fractionalBits = 8;
+		std::string const	_name;
+		Weapon const		&_weapon;
 
 	public:
-		Fixed( void );
-		Fixed( Fixed const & src);
-		~Fixed( void );
+		HumanA(std::string const name, Weapon const &weapon);
+		~HumanA(void);
 
-		Fixed &	operator=( Fixed const & src);
-		int		getRawBits( void ) const;
-		void	setRawBits( int const raw );
+		void		attack(void) const;
 };
 
 #endif

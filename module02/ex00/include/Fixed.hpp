@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.class.hpp                                   :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 16:22:57 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/20 14:03:53 by jhesso           ###   ########.fr       */
+/*   Created: 2023/12/21 16:02:18 by jhesso            #+#    #+#             */
+/*   Updated: 2023/12/28 13:02:26 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WEAPON_CLASS_HPP
-# define WEAPON_CLASS_HPP
+#ifndef FIXED_HPP
+# define FIXED_HPP
 
-# include <string>
-
-class Weapon
+class Fixed
 {
 	private:
-		std::string	_type;
+		int			_raw;
+		static int const	_fractionalBits = 8;
 
 	public:
-		Weapon(std::string const type);
-		~Weapon(void);
+		Fixed( void );
+		Fixed( Fixed const & src);
+		~Fixed( void );
 
-		std::string const	&getType(void) const;
-		void				setType(std::string const type);
+		Fixed &	operator=( Fixed const & src);
+		int		getRawBits( void ) const;
+		void	setRawBits( int const raw );
 };
 
 #endif

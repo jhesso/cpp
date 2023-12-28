@@ -1,55 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.class.cpp                                   :+:      :+:    :+:   */
+/*   HumanA.class.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/20 14:14:34 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/20 14:28:01 by jhesso           ###   ########.fr       */
+/*   Created: 2023/12/19 16:41:07 by jhesso            #+#    #+#             */
+/*   Updated: 2023/12/28 12:53:49 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
 #include <iostream>
-#include "HumanB.class.hpp"
+#include <string>
+#include "HumanA.hpp"
 
 /******************************************************************************/
 /*						CONSTRUCTORS & DESTRUCTORS							  */
 /******************************************************************************/
 
-HumanB::HumanB(std::string const name) : _name(name), _weapon(NULL)
+HumanA::HumanA(std::string const name, Weapon const &weapon)
+				: _name(name), _weapon(weapon)
 {
 	std::cout << this->_name << " enters the fight!" << std::endl;
 }
 
-HumanB::~HumanB(void)
+HumanA::~HumanA(void)
 {
 	std::cout << this->_name << " leaves the fight" << std::endl;
-}
-
-/******************************************************************************/
-/*								SETTERS										  */
-/******************************************************************************/
-
-void	HumanB::setWeapon(Weapon &weapon)
-{
-	if (weapon.getType().empty())
-		this->_weapon = NULL;
-	else
-		this->_weapon = &weapon;
 }
 
 /******************************************************************************/
 /*							PUBLIC FUNCTIONS								  */
 /******************************************************************************/
 
-void	HumanB::attack(void) const
+void	HumanA::attack(void) const
 {
-	std::cout	<< this->_name << " attacks with their ";
-	if (this->_weapon == NULL)
-		std::cout << "bare hands";
-	else
-		std::cout << this->_weapon->getType();
-	std::cout << std::endl;
+	std::cout	<< this->_name << " attacks with their "
+				<< this->_weapon.getType() << std::endl;
 }

@@ -10,7 +10,7 @@ SRC_PATH	=	src/
 OBJ_PATH	=	obj/
 INC_PATH	=	include/
 SRC			=	main.cpp \
-				Zombie.class.cpp \
+				Zombie.cpp \
 				zombieHorde.cpp
 SRCS		=	$(addprefix $(SRC_PATH), $(SRC))
 OBJ			=	$(SRC:.cpp=.o)

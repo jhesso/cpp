@@ -6,13 +6,13 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:53:21 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/20 14:28:57 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/28 12:54:08 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.class.hpp"
-#include "HumanA.class.hpp"
-#include "HumanB.class.hpp"
+#include "Weapon.hpp"
+#include "HumanA.hpp"
+#include "HumanB.hpp"
 
 int	main(void)
 {

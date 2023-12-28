@@ -1,60 +1,66 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.class.cpp                                   :+:      :+:    :+:   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/18 20:44:44 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/19 15:38:46 by jhesso           ###   ########.fr       */
+/*   Created: 2023/12/21 16:02:05 by jhesso            #+#    #+#             */
+/*   Updated: 2023/12/28 13:02:45 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Zombie.class.hpp"
+#include "Fixed.hpp"
 
 /******************************************************************************/
 /*						CONSTRUCTORS & DESTRUCTORS							  */
 /******************************************************************************/
 
-Zombie::Zombie(void)
+Fixed::Fixed(void): _raw(0)
 {
-	std::cout << "A wild zombie appeared!" << std::endl;
+	std::cout << "Default constructor called" << std::endl;
 }
 
-Zombie::Zombie(std::string name) : _name(name)
+Fixed::Fixed(Fixed const & src)
 {
-	std::cout << "A wild zombie called " << _name << " appeared!" << std::endl;
+	std::cout << "Copy constructor called" << std::endl;
+	*this = src;
 }
 
-Zombie::~Zombie(void)
+Fixed::~Fixed(void)
 {
-	std::cout << _name << ": is dead" << std::endl;
+	std::cout << "Destructor called" << std::endl;
+}
+
+/******************************************************************************/
+/*								OPERATORS								  	  */
+/******************************************************************************/
+
+Fixed &	Fixed::operator=(Fixed const & src)
+{
+	std::cout << "Copy assignment operator called" << std::endl;
+	if (this != &src)
+		this->_raw = src.getRawBits();
+	return (*this);
 }
 
 /******************************************************************************/
 /*								GETTERS										  */
 /******************************************************************************/
 
-std::string	Zombie::_getName(void)
+int	Fixed::getRawBits(void) const
 {
-	return (this->_name);
+	std::cout << "getRawBits member function called" << std::endl;
+	return (this->_raw);
 }
 
 /******************************************************************************/
 /*								SETTERS										  */
 /******************************************************************************/
 
-void	Zombie::setName(std::string name)
+void	Fixed::setRawBits(int const raw)
 {
-	this->_name = name;
-}
-
-/******************************************************************************/
-/*							PUBLIC FUNCTIONS								  */
-/******************************************************************************/
-
-void	Zombie::announce(void)
-{
-	std::cout	<< this->_getName() << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << "setRawBits member function called." << std::endl;
+	this->_raw = raw;
 }
