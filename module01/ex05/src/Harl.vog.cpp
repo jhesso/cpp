@@ -6,13 +6,14 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 15:44:38 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/28 13:00:31 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/29 12:38:08 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <map>
 #include "Harl.hpp"
+#include "Colors.hpp"
 
 /******************************************************************************/
 /*						CONSTRUCTORS & DESTRUCTORS							  */
@@ -34,29 +35,29 @@ Harl::~Harl(void)
 
 void	Harl::_debug(void)
 {
-	std::cout	<< "I love having extra bacon for my "
+	std::cout	<< BLUE "[DEBUG]: I love having extra bacon for my "
 				<< "7XL-double-cheese-triple-pickle-special-ketchup burger. "
-				<< "I really do!" << std::endl;
+				<< "I really do!" RESET << std::endl;
 }
 
 void	Harl::_info(void)
 {
-	std::cout	<< "I cannot believe adding extra bacon costs more money. "
+	std::cout	<< CYAN "[INFO]: I cannot believe adding extra bacon costs more money. "
 				<< "You didn't put enough bacon in my burger! "
-				<< "If you did, I wouldn't be asking for more!"
+				<< "If you did, I wouldn't be asking for more!" RESET
 				<< std::endl;
 }
 
 void	Harl::_warning(void)
 {
-	std::cout	<< "I think I deserve to have some extra bacon for free. "
+	std::cout	<< YELLOW "[WARNING]: I think I deserve to have some extra bacon for free. "
 				<< "I've been coming for years whereas you started working here "
-				<< "since last month." << std::endl;
+				<< "since last month." RESET << std::endl;
 }
 
 void	Harl::_error(void)
 {
-	std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
+	std::cout << RED "[ERROR]: This is unacceptable! I want to speak to the manager now." RESET << std::endl;
 }
 
 /******************************************************************************/

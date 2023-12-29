@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:12:14 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/28 12:53:21 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/29 12:07:21 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class HumanB
 {
 	private:
 		std::string const	_name;
-		Weapon				*_weapon;
+		Weapon *			_weapon;
 
 	public:
 		HumanB(std::string const name);
