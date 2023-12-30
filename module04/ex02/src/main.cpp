@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:18:00 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/27 20:47:06 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/30 20:01:08 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,12 +178,15 @@ void	shitsAndGiggles(void)
 
 int	main(void)
 {
-	// AAnimal* a = new AAnimal(); // this is not allowed
+	// AAnimal* a = new AAnimal(); // this is not allowed and wont compile
 
 	arrayTest();
 	catBrainTest();
 	dogBrainTest();
 	shitsAndGiggles();
+
+	// uncomment to check for leaks
+	// system("leaks animal");
 
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:18:00 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/30 15:24:29 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/30 19:57:36 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,16 @@ int	main(void)
 	catBrainTest();
 	dogBrainTest();
 	shitsAndGiggles();
+
+	std::cout << "Testing for deep/shallow copy" << std::endl << std::endl;
+	Dog basic;
+	{
+		Dog tmp = basic; // should create a new brain as this is a deep copy
+	}
+	std::cout << std::endl << std::endl;
+
+	// uncomment to check for memory leaks
+	// system("leaks animal");
 
 	return (0);
 }
