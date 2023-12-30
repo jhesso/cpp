@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:02:05 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/28 13:05:46 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/30 14:12:01 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ Fixed	Fixed::operator/(Fixed const & src) const
 // Prefix
 Fixed &	Fixed::operator++(void)
 {
-	this->_raw += 1; // can I just do ++?
+	this->_raw += 1;
 	return (*this);
 }
 

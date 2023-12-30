@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:10:03 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/28 13:06:03 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/30 14:19:28 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -462,6 +462,11 @@ int	main( void )
 					<< RESET << std::endl;
 	else
 		testsFailed(comparison, binary, unary, minMax);
+
+	//* uncomment to check for division by 0
+	// Fixed	c(0);
+	// std::cout << std::endl << "Division by 0" << std::endl;
+	// std::cout << "a / c = " << a << " / " << c << " = " << a / c << std::endl;
 
 	return (0);
 }
