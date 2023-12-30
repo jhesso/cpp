@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:27:51 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/27 19:33:34 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/30 15:38:13 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class WrongAnimal
 		WrongAnimal &	operator=(WrongAnimal const & src);
 
 		std::string const &	getType(void) const;
-		virtual void		makeSound(void) const;
+		void		makeSound(void) const;
 };
 
 #endif
