@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 19:18:36 by jhesso            #+#    #+#             */
-/*   Updated: 2023/12/27 19:30:31 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/12/30 15:20:27 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 
 Brain::Brain(void)
 {
-	std::cout << CYAN "Brain defualt constructor called." RESET << std::endl;
+	std::cout << CYAN "Brain default constructor called." RESET << std::endl;
 }
 
 Brain::Brain(Brain const & src)
 {
-	std::cout << CYAN "Brain copy construcotr called." RESET << std::endl;
+	std::cout << CYAN "Brain copy constructor called." RESET << std::endl;
 	*this = src;
 }
 
