@@ -1,16 +1,21 @@
 # Program name
-NAME		=	bureaucrat
+NAME		=	intern
 
 # Compiler and compilation flags
 CC			=	c++
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98
+CFLAGS		=	-Wall -Wextra -Werror
 
 # Build files and directories
 SRC_PATH	=	src/
 OBJ_PATH	=	obj/
 INC_PATH	=	include/
 SRC			=	main.cpp \
-				Bureaucrat.cpp
+				AForm.cpp \
+				Bureaucrat.cpp \
+				ShrubberyCreationForm.cpp \
+				RobotomyRequestForm.cpp \
+				PresidentialPardonForm.cpp \
+				Intern.cpp
 SRCS		=	$(addprefix $(SRC_PATH), $(SRC))
 OBJ			=	$(SRC:.cpp=.o)
 OBJS		=	$(addprefix $(OBJ_PATH), $(OBJ))
