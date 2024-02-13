@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:35:45 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/08 00:29:42 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/13 18:25:37 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ void	Bureaucrat::executeForm(AForm & form) const
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << "Exception: Couldn't execute " << form << " because "
+		std::cerr << "Exception: Couldn't execute " << form << std::endl << "because "
 					<< e.what() << std::endl;
 	}
 
