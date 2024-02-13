@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 22:10:49 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/08 00:23:47 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/13 18:19:07 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,24 @@
 /******************************************************************************/
 
 AForm::AForm(void)
-	: _name("General Form"),
-	_signGrade(Bureaucrat::lowestGrade),
-	_executeGrade(Bureaucrat::lowestGrade)
+	:	_name("General Form"),
+		_signed(false),
+		_signGrade(Bureaucrat::lowestGrade),
+		_executeGrade(Bureaucrat::lowestGrade)
 {
 	std::cout << "Form default constructor called" << std::endl;
 }
 
 AForm::AForm(AForm const & src)
-	: _name(src._name), _signGrade(src._signGrade), _executeGrade(src._executeGrade)
+	:	_name(src._name), _signed(src._signed), _signGrade(src._signGrade),
+		_executeGrade(src._executeGrade)
 {
 	std::cout << "Form copy constructor called" << std::endl;
 }
 
 AForm::AForm(std::string const & name, int const signGrade, int const executeGrade)
-	: _name(name), _signGrade(signGrade), _executeGrade(executeGrade)
+	:	_name(name), _signed(false), _signGrade(signGrade),
+		_executeGrade(executeGrade)
 {
 	std::cout << "Form constructor called" << std::endl;
 	if (signGrade < Bureaucrat::highestGrade || executeGrade < Bureaucrat::highestGrade)

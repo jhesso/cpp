@@ -6,12 +6,13 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 23:24:45 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/08 00:06:50 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/13 18:12:37 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 #include "RobotomyRequestForm.hpp"
 
 /******************************************************************************/
@@ -23,6 +24,7 @@ RobotomyRequestForm::RobotomyRequestForm(void)
 			RobotomyRequestForm::gradeToExecute),
 		_target("Unknown")
 {
+	srand(time(NULL));
 	std::cout << "RobotomyRequestForm default constructor called" << std::endl;
 }
 
@@ -30,6 +32,7 @@ RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const & src)
 	:	AForm(src),
 		_target(src._target)
 {
+	srand(time(NULL));
 	std::cout << "RobotomyRequestForm copy constructor called" << std::endl;
 }
 
@@ -38,6 +41,7 @@ RobotomyRequestForm::RobotomyRequestForm(std::string const & target)
 			RobotomyRequestForm::gradeToExecute),
 		_target(target)
 {
+	srand(time(NULL));
 	std::cout << "RobotomyRequestForm attribute constructor called." << std::endl;
 	if (_target.empty())
 		_target = "Unknown";

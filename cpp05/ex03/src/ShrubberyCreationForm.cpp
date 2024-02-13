@@ -6,13 +6,14 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 23:24:48 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/08 00:19:06 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/13 18:13:04 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <ctime>
 #include "ShrubberyCreationForm.hpp"
 
 /******************************************************************************/
@@ -24,6 +25,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(void)
 			ShrubberyCreationForm::gradeToExecute),
 		_target("Unknown")
 {
+	srand(time(NULL));
 	std::cout << "ShrubberyCreationForm default constructor called" << std::endl;
 }
 
@@ -31,6 +33,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const & src)
 	:	AForm(src),
 		_target(src._target)
 {
+	srand(time(NULL));
 	std::cout << "ShrubberyCreationForm copy constructor called" << std::endl;
 }
 
@@ -39,6 +42,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string const & target)
 			ShrubberyCreationForm::gradeToExecute),
 		_target(target)
 {
+	srand(time(NULL));
 	std::cout << "ShrubberyCreationForm attribute constructor called" << std::endl;
 	if (_target.empty())
 		_target = "Unknown";

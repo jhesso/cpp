@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 21:54:34 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/07 23:11:35 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/13 14:17:57 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Form
 {
 	private:
 		std::string const	_name;
-		bool				_signed = false;
+		bool				_signed;
 		int const			_signGrade;
 		int const			_executeGrade;
 
