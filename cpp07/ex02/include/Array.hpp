@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 19:34:04 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/14 19:31:55 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/14 23:03:17 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <iostream>
 
-template <typename T = int>
+template <typename T>
 class Array
 {
 	private:

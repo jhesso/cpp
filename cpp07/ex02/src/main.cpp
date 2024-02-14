@@ -6,12 +6,13 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 19:33:42 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/14 20:21:02 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/14 23:31:43 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <cstdlib>
+#include <string>
 #include "Array.hpp"
 
 # define	GREEN	"\033[0;32m"
@@ -123,6 +124,15 @@ int	main(void)
 	{
 		std::cerr << RED << "Exception: " << e.what() << RESET << std::endl;
 	}
+	std::cout << YELLOW << "---- TEST CHAR ARRAY ----" << RESET << std::endl << std::endl;
+	Array<char>	charArr(22);
+	std::string s = "Yay I made a C string!";
+	for (unsigned int i = 0; i < charArr.size(); i++)
+		charArr[i] = s[i];
+	for (unsigned int i = 0; i < charArr.size(); i++)
+		std::cout << charArr[i];
+	std::cout << std::endl << std::endl;
+	std::cout << "Thanks for playing with my array :>" << std::endl;
 
 	return 0;
 }
