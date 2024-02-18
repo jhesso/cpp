@@ -6,12 +6,17 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:37:41 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/16 12:38:10 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/18 22:14:30 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <sstream>
+#include <string>
 #include "RPN.hpp"
+
+# define	GREEN	"\033[0;32m"
+# define	RESET	"\033[0m"
 
 /******************************************************************************/
 /*						CONSTRUCTORS & DESTRUCTORS							  */
@@ -19,19 +24,15 @@
 
 RPN::RPN(void)
 {
-	std::cout << "RPN default constructor called" << std::endl;
+	// do the calculation
 }
 
 RPN::RPN(RPN const & src)
 {
-	std::cout << "RPN copy constructor called" << std::endl;
 	*this = src;
 }
 
-RPN::~RPN(void)
-{
-	std::cout << "RPN destructor called" << std::endl;
-}
+RPN::~RPN(void) {}
 
 /******************************************************************************/
 /*								OPERATORS								  	  */
@@ -39,25 +40,91 @@ RPN::~RPN(void)
 
 RPN &	RPN::operator=(RPN const & src)
 {
-	std::cout << "RPN copy assignment operator called" << std::endl;
-	// ! this
 	if (this != &src)
-		this-> = src.;
+		this->_stack = src._stack;
 	return (*this);
 }
-
-/******************************************************************************/
-/*								SETTERS										  */
-/******************************************************************************/
-
-/******************************************************************************/
-/*								GETTERS										  */
-/******************************************************************************/
 
 /******************************************************************************/
 /*							PRIVATE FUNCTIONS								  */
 /******************************************************************************/
 
+void	RPN::doOperand(std::string const & operand)
+{
+	int	result;
+	char op = operand[0];
+
+	result = _stack.top();
+	_stack.pop();
+	switch (op)
+	{
+	case '+':
+		result = _stack.top() + result;
+		break;
+	case '-':
+		result = _stack.top() - result;
+		break;
+	case '*':
+		result = _stack.top() * result;
+		break;
+	case '/':
+		if (result == 0)
+			throw(DivisionByZero());
+		result = _stack.top() / result;
+		break;
+	default:
+		throw(InvalidInput());
+	}
+	_stack.pop();
+	_stack.push(result);
+}
+
 /******************************************************************************/
 /*							PUBLIC FUNCTIONS								  */
 /******************************************************************************/
+
+void	RPN::calculate(std::string const & input)
+{
+	std::istringstream iss(input);
+	std::string token;
+
+	while (iss >> token)
+	{
+		if (token.length() > 1)
+			throw(InvalidInput());
+		if (isdigit(token[0]))
+			_stack.push(stoi(token));
+		else if (token.find_first_of("+-*/") != std::string::npos)
+		{
+			if (_stack.size() < 2)
+				throw(InvalidInput());
+			try
+			{
+				doOperand(token);
+			}
+			catch(const std::exception& e)
+			{
+				throw;
+			}
+		}
+		else
+			throw(InvalidInput());
+	}
+	if (_stack.size() != 1)
+		throw(InvalidInput());
+	std::cout << GREEN << _stack.top() << RESET << std::endl;
+}
+
+/******************************************************************************/
+/*								  EXCEPTIONS								  */
+/******************************************************************************/
+
+char const *	RPN::InvalidInput::what() const throw()
+{
+	return "Invalid input!";
+}
+
+char const *	RPN::DivisionByZero::what() const throw()
+{
+	return "Division by zero";
+}

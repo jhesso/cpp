@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:38:27 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/16 12:42:26 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/18 20:55:45 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,18 @@ int	main(int ac, char **av)
 {
 	if (ac != 2)
 	{
-		std::cerr << RED << "Usage: ./RPN \"Inverted Polish expression\"" << RESET << std::endl;
+		std::cout << RED << "Usage: ./RPN \"Inverted Polish expression\"" << RESET << std::endl;
 		return 1;
 	}
-
+	try
+	{
+		RPN rpn;
+		rpn.calculate(av[1]);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << RED << e.what() << RESET << std::endl;
+		return 1;
+	}
 	return 0;
 }

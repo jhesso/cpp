@@ -3,7 +3,7 @@ NAME		=	RPN
 
 # Compiler and compilation flags
 CC			=	c++
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98
+CFLAGS		=	-Wall -Wextra -Werror
 
 # Build files and directories
 SRC_PATH	=	src/
