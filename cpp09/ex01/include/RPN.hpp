@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:37:22 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/18 22:36:38 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/18 23:03:08 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class RPN
 
 		std::stack<int>	_stack;
 
-		void	doOperand(std::string const & operand);
+		void	doOperator(std::string const & operand);
 		void	insertSpaces(std::string & input);
 
 	public:

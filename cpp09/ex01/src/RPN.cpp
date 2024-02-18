@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:37:41 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/18 22:51:37 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/18 23:04:05 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ RPN &	RPN::operator=(RPN const & src)
 /*							PRIVATE FUNCTIONS								  */
 /******************************************************************************/
 
-void	RPN::doOperand(std::string const & operand)
+void	RPN::doOperator(std::string const & token)
 {
 	int	result;
-	char op = operand[0];
+	char op = token[0];
 
 	result = _stack.top();
 	_stack.pop();
@@ -117,7 +117,7 @@ void	RPN::calculate(std::string input)
 				throw(InvalidInput());
 			try
 			{
-				doOperand(token);
+				doOperator(token);
 			}
 			catch(const std::exception& e)
 			{
