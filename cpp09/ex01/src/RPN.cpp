@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:37:41 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/18 22:14:30 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/18 22:51:37 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,29 @@ void	RPN::doOperand(std::string const & operand)
 	_stack.push(result);
 }
 
+void	RPN::insertSpaces(std::string & input)
+{
+	size_t	pos = 0;
+	while ((pos = input.find_first_of("+-*/", pos)) != std::string::npos)
+	{
+		if (pos > 0 && input[pos - 1] != ' ')
+		{
+			input.insert(pos, " ");
+			pos++;
+		}
+		if (pos + 1 != input.length() && input[pos + 1] != ' ')
+			input.insert(pos + 1, " ");
+		pos++;
+	}
+}
+
 /******************************************************************************/
 /*							PUBLIC FUNCTIONS								  */
 /******************************************************************************/
 
-void	RPN::calculate(std::string const & input)
+void	RPN::calculate(std::string input)
 {
+	insertSpaces(input);
 	std::istringstream iss(input);
 	std::string token;
 
