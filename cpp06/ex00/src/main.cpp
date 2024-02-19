@@ -6,12 +6,12 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:33:34 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/08 19:26:05 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/19 15:03:52 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Converter.hpp"
+#include "ScalarConverter.hpp"
 
 int	main(int ac, char **av)
 {
@@ -23,8 +23,9 @@ int	main(int ac, char **av)
 	}
 	try
 	{
-		Converter converter(av[1]);
-		std::cout << converter << std::endl;
+		ScalarConverter converter;
+		converter.convert(av[1]);
+		// std::cout << converter << std::endl;
 	}
 	catch(const std::exception& e)
 	{

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Converter.hpp                                      :+:      :+:    :+:   */
+/*   ScalarConverter.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:34:42 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/08 18:57:41 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/19 12:55:17 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <limits>
 # include <iomanip>
 
-class Converter
+class ScalarConverter
 {
 	private:
 		enum	e_types
@@ -45,6 +45,13 @@ class Converter
 		double	_double;
 		int		_errorFlags;
 
+		static int const	_intMax;
+		static int const	_intMin;
+		static char const	_charMax;
+		static char const	_charMin;
+		static float const	_floatMax;
+		static float const	_floatMin;
+
 		void	_convertScalar(std::string const & input);
 		void	_getType(std::string const & input);
 		bool	_getInt(std::string const & input);
@@ -58,31 +65,28 @@ class Converter
 		void	_castScalarDouble(void);
 		void	_setConversionErrorFlags(void);
 
+		bool	_isCharConversionOk(void) const;
+		bool	_isIntConversionOk(void) const;
+
+		std::string	_getCharConversionMessage(void) const;
+		std::string _getIntConversionMessage(void) const;
+
+		void	_print(void);
+
 	public:
-		Converter(void);
-		Converter(Converter const & src);
-		Converter(std::string const & input);
-		~Converter(void);
+		ScalarConverter(void);
+		ScalarConverter(ScalarConverter const & src);
+		ScalarConverter(std::string const & input);
+		~ScalarConverter(void);
 
-		Converter &	operator=(Converter const & src);
+		ScalarConverter &	operator=(ScalarConverter const & src);
 
-		int		getInt(void) const;
-		char	getChar(void) const;
-		float	getFloat(void) const;
-		double	getDouble(void) const;
+		void	convert(std::string const & input);
 
-		bool	isCharConversionOk(void) const;
-		bool	isIntConversionOk(void) const;
-
-		std::string	getCharConversionMessage(void) const;
-		std::string getIntConversionMessage(void) const;
-
-		static int const	intMax;
-		static int const	intMin;
-		static char const	charMax;
-		static char const	charMin;
-		static float const	floatMax;
-		static float const	floatMin;
+		// int		getInt(void) const;
+		// char	getChar(void) const;
+		// float	getFloat(void) const;
+		// double	getDouble(void) const;
 
 		class	NotLiteralException : public std::exception
 		{
@@ -91,6 +95,6 @@ class Converter
 		};
 };
 
-std::ostream &	operator<<(std::ostream & os, Converter const & converter);
+// std::ostream &	operator<<(std::ostream & os, ScalarConverter const & converter);
 
 #endif

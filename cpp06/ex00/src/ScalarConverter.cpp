@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Converter.cpp                                      :+:      :+:    :+:   */
+/*   ScalarConverter.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,58 +11,58 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Converter.hpp"
+#include "ScalarConverter.hpp"
 
 #define MSG false
 
-int const	Converter::intMax = std::numeric_limits<int>::max();
-int const	Converter::intMin = std::numeric_limits<int>::min();
-char const	Converter::charMax = std::numeric_limits<char>::max();
-char const	Converter::charMin = std::numeric_limits<char>::min();
-float const	Converter::floatMax = std::numeric_limits<float>::max();
-float const	Converter::floatMin = std::numeric_limits<float>::min();
+int const	ScalarConverter::_intMax = std::numeric_limits<int>::max();
+int const	ScalarConverter::_intMin = std::numeric_limits<int>::min();
+char const	ScalarConverter::_charMax = std::numeric_limits<char>::max();
+char const	ScalarConverter::_charMin = std::numeric_limits<char>::min();
+float const	ScalarConverter::_floatMax = std::numeric_limits<float>::max();
+float const	ScalarConverter::_floatMin = std::numeric_limits<float>::min();
 
 /******************************************************************************/
 /*						CONSTRUCTORS & DESTRUCTORS							  */
 /******************************************************************************/
 
-Converter::Converter(void)
+ScalarConverter::ScalarConverter(void)
 	:	_type(DEFAULT), _char(0), _int(0), _float(0), _double(0), _errorFlags(OK)
 {
 	if (MSG)
-		std::cout << "Converter default constructor called" << std::endl;
+		std::cout << "ScalarConverter default constructor called" << std::endl;
 }
 
-Converter::Converter(Converter const & src)
+ScalarConverter::ScalarConverter(ScalarConverter const & src)
 	:	_type(src._type), _char(src._char), _int(src._int), _float(src._float),
 		_double(src._double), _errorFlags(src._errorFlags)
 {
 	if (MSG)
-		std::cout << "Converter copy constructor called" << std::endl;
+		std::cout << "ScalarConverter copy constructor called" << std::endl;
 }
 
-Converter::Converter(std::string const & input)
+ScalarConverter::ScalarConverter(std::string const & input)
 	:	_type(DEFAULT), _char(0), _int(0), _float(0), _double(0), _errorFlags(OK)
 {
 	if (MSG)
-		std::cout << "Converter input constructor called" << std::endl;
+		std::cout << "ScalarConverter input constructor called" << std::endl;
 	this->_convertScalar(input);
 }
 
-Converter::~Converter(void)
+ScalarConverter::~ScalarConverter(void)
 {
 	if (MSG)
-		std::cout << "Converter destructor called" << std::endl;
+		std::cout << "ScalarConverter destructor called" << std::endl;
 }
 
 /******************************************************************************/
 /*								OPERATORS								  	  */
 /******************************************************************************/
 
-Converter &	Converter::operator=(Converter const & src)
+ScalarConverter &	ScalarConverter::operator=(ScalarConverter const & src)
 {
 	if (MSG)
-		std::cout << "Converter copy assignment operator called" << std::endl;
+		std::cout << "ScalarConverter copy assignment operator called" << std::endl;
 	this->_char = src._char;
 	this->_int = src._int;
 	this->_float = src._float;
@@ -70,56 +70,35 @@ Converter &	Converter::operator=(Converter const & src)
 	return (*this);
 }
 
-std::ostream &	operator<<(std::ostream & os, Converter const & converter)
-{
-	os << "char: ";
-	if (converter.isCharConversionOk())
-		os << "\'" << converter.getChar() << "\'";
-	else
-		os << converter.getCharConversionMessage();
-	os << std::endl << "int: ";
-	if (converter.isIntConversionOk())
-		os << converter.getInt();
-	else
-		os << converter.getIntConversionMessage();
-	os << std::endl << "float: ";
-	if (converter.getFloat() == static_cast<int>(converter.getFloat()))
-		os << std::fixed << std::setprecision(1) << converter.getFloat() << "f";
-	else
-		os << converter.getFloat() << "f";
-	os << std::endl << "double: " << converter.getDouble();
-	return os;
-}
-
 /******************************************************************************/
 /*								GETTERS										  */
 /******************************************************************************/
 
-int	Converter::getInt(void) const
-{
-	return (this->_int);
-}
+// int	ScalarConverter::getInt(void) const
+// {
+// 	return (this->_int);
+// }
 
-char	Converter::getChar(void) const
-{
-	return (this->_char);
-}
+// char	ScalarConverter::getChar(void) const
+// {
+// 	return (this->_char);
+// }
 
-float	Converter::getFloat(void) const
-{
-	return (this->_float);
-}
+// float	ScalarConverter::getFloat(void) const
+// {
+// 	return (this->_float);
+// }
 
-double	Converter::getDouble(void) const
-{
-	return (this->_double);
-}
+// double	ScalarConverter::getDouble(void) const
+// {
+// 	return (this->_double);
+// }
 
 /******************************************************************************/
 /*							PRIVATE FUNCTIONS								  */
 /******************************************************************************/
 
-void	Converter::_convertScalar(std::string const & input)
+void	ScalarConverter::_convertScalar(std::string const & input)
 {
 	_getType(input);
 	switch (this->_type)
@@ -140,11 +119,11 @@ void	Converter::_convertScalar(std::string const & input)
 	case NON_NUM:
 		break;
 	default:
-		throw(Converter::NotLiteralException());
+		throw(ScalarConverter::NotLiteralException());
 	}
 }
 
-void	Converter::_getType(std::string const & input)
+void	ScalarConverter::_getType(std::string const & input)
 {
 	if (_getInt(input))
 		this->_type = INTEGER;
@@ -158,7 +137,7 @@ void	Converter::_getType(std::string const & input)
 		this->_type = NON_NUM;
 }
 
-bool	Converter::_getInt(std::string const & input)
+bool	ScalarConverter::_getInt(std::string const & input)
 {
 	char	*end;
 	long	nbr;
@@ -166,7 +145,7 @@ bool	Converter::_getInt(std::string const & input)
 	nbr = std::strtol(input.c_str(), &end, 10);
 	if (end == input.c_str() || *end != '\0')
 		return false;
-	if (nbr > intMax || nbr < intMin)
+	if (nbr > _intMax || nbr < _intMin)
 	{
 		_errorFlags += INT_OF;
 		return false;
@@ -175,7 +154,7 @@ bool	Converter::_getInt(std::string const & input)
 	return true;
 }
 
-bool	Converter::_getChar(std::string const & input)
+bool	ScalarConverter::_getChar(std::string const & input)
 {
 	if (input.length() == 1)
 	{
@@ -187,7 +166,7 @@ bool	Converter::_getChar(std::string const & input)
 	return false;
 }
 
-bool	Converter::_getFloat(std::string const & input)
+bool	ScalarConverter::_getFloat(std::string const & input)
 {
 	char	*end;
 	float	nbr;
@@ -203,7 +182,7 @@ bool	Converter::_getFloat(std::string const & input)
 	return true;
 }
 
-bool	Converter::_getDouble(std::string const & input)
+bool	ScalarConverter::_getDouble(std::string const & input)
 {
 	char	*end;
 	double	nbr;
@@ -219,7 +198,7 @@ bool	Converter::_getDouble(std::string const & input)
 	return true;
 }
 
-bool	Converter::_getNonNumeric(std::string const & input)
+bool	ScalarConverter::_getNonNumeric(std::string const & input)
 {
 	if (input == "inf" || input == "+inf" || input == "inff" || input == "+inff")
 	{
@@ -248,7 +227,7 @@ bool	Converter::_getNonNumeric(std::string const & input)
 	return false;
 }
 
-void	Converter::_castScalarInt(void)
+void	ScalarConverter::_castScalarInt(void)
 {
 	_setConversionErrorFlags();
 	this->_char = static_cast<char>(this->_int);
@@ -258,7 +237,7 @@ void	Converter::_castScalarInt(void)
 		_errorFlags += CHAR_NONPRINT;
 }
 
-void	Converter::_castScalarChar(void)
+void	ScalarConverter::_castScalarChar(void)
 {
 	_setConversionErrorFlags();
 	this->_int = static_cast<int>(this->_char);
@@ -266,7 +245,7 @@ void	Converter::_castScalarChar(void)
 	this->_double = static_cast<int>(this->_char);
 }
 
-void	Converter::_castScalarFloat(void)
+void	ScalarConverter::_castScalarFloat(void)
 {
 	_setConversionErrorFlags();
 	this->_int = static_cast<int>(this->_float);
@@ -276,7 +255,7 @@ void	Converter::_castScalarFloat(void)
 		_errorFlags += CHAR_NONPRINT;
 }
 
-void	Converter::_castScalarDouble(void)
+void	ScalarConverter::_castScalarDouble(void)
 {
 	_setConversionErrorFlags();
 	this->_int = static_cast<int>(this->_double);
@@ -286,24 +265,24 @@ void	Converter::_castScalarDouble(void)
 		_errorFlags += CHAR_NONPRINT;
 }
 
-void	Converter::_setConversionErrorFlags(void)
+void	ScalarConverter::_setConversionErrorFlags(void)
 {
 	switch (_type)
 	{
 	case INTEGER:
-		if (this->_int > charMax || this->_int < charMin)
+		if (this->_int > _charMax || this->_int < _charMin)
 			this->_errorFlags += CHAR_OF;
 		break;
 	case FLOAT:
-		if (this->_float > charMax || this->_float < charMin)
+		if (this->_float > _charMax || this->_float < _charMin)
 			this->_errorFlags += CHAR_OF;
-		if (this->_float > intMax || this->_float < intMin)
+		if (this->_float > _intMax || this->_float < _intMin)
 			this->_errorFlags += INT_OF;
 		break;
 	case DOUBLE:
-		if (this->_double > charMax || this->_double < charMin)
+		if (this->_double > _charMax || this->_double < _charMin)
 			this->_errorFlags += CHAR_OF;
-		if (this->_double > intMax || this->_double < intMin)
+		if (this->_double > _intMax || this->_double < _intMin)
 			this->_errorFlags += INT_OF;
 		break;
 	default:
@@ -311,25 +290,21 @@ void	Converter::_setConversionErrorFlags(void)
 	}
 }
 
-/******************************************************************************/
-/*							PUBLIC FUNCTIONS								  */
-/******************************************************************************/
-
-bool	Converter::isCharConversionOk(void) const
+bool	ScalarConverter::_isCharConversionOk(void) const
 {
 	if (this->_errorFlags & CHAR_OF || this->_errorFlags & CHAR_NONPRINT)
 		return false;
 	return true;
 }
 
-bool	Converter::isIntConversionOk(void) const
+bool	ScalarConverter::_isIntConversionOk(void) const
 {
 	if (this->_errorFlags & INT_OF)
 		return false;
 	return true;
 }
 
-std::string	Converter::getCharConversionMessage(void) const
+std::string	ScalarConverter::_getCharConversionMessage(void) const
 {
 	if (this->_errorFlags & CHAR_OF)
 		return ("impossible");
@@ -338,18 +313,92 @@ std::string	Converter::getCharConversionMessage(void) const
 	return ("unknown error");
 }
 
-std::string Converter::getIntConversionMessage(void) const
+std::string ScalarConverter::_getIntConversionMessage(void) const
 {
 	if (this->_errorFlags & INT_OF)
 		return ("impossible");
 	return ("unkown error");
 }
 
+void	ScalarConverter::_print(void)
+{
+	std::cout << "char ";
+	if (this->_isCharConversionOk())
+		std::cout << "\'" << this->_char << "\'";
+	else
+		std::cout << _getCharConversionMessage();
+	std::cout << std::endl << "int: ";
+	if (this->_isIntConversionOk())
+		std::cout << this->_int;
+	else
+		std::cout << _getIntConversionMessage();
+	std::cout << std::endl << "float: ";
+	if (_float == static_cast<int>(_float))
+		std::cout << std::fixed << std::setprecision(1) << _float << "f";
+	else
+		std::cout << _float << "f";
+	std::cout << std::endl << "double: " << _double << std::endl;
+}
+
+// TODO: move this to a private function, then need to test everything
+// TODO: also remove the std::string constructor and call just the convert function from main
+//? can prolly just move this to a private printing function to make sure I follow the subj
+// std::ostream &	operator<<(std::ostream & os, ScalarConverter const & converter)
+// {
+// 	os << "char: ";
+// 	if (converter._isCharConversionOk())
+// 		os << "\'" << converter.getChar() << "\'";
+// 	else
+// 		os << converter._getCharConversionMessage();
+// 	os << std::endl << "int: ";
+// 	if (converter._isIntConversionOk())
+// 		os << converter.getInt();
+// 	else
+// 		os << converter._getIntConversionMessage();
+// 	os << std::endl << "float: ";
+// 	if (converter.getFloat() == static_cast<int>(converter.getFloat()))
+// 		os << std::fixed << std::setprecision(1) << converter.getFloat() << "f";
+// 	else
+// 		os << converter.getFloat() << "f";
+// 	os << std::endl << "double: " << converter.getDouble();
+// 	return os;
+// }
+
+/******************************************************************************/
+/*							PUBLIC FUNCTIONS								  */
+/******************************************************************************/
+
+void	ScalarConverter::convert(std::string const & input)
+{
+	_getType(input);
+	switch (this->_type)
+	{
+	case INTEGER:
+		_castScalarInt();
+		break;
+	case FLOAT:
+		std::cout << "here" << std::endl;
+		_castScalarFloat();
+		break;
+	case DOUBLE:
+		_castScalarDouble();
+		break;
+	case CHARACTER:
+		_castScalarChar();
+		break;
+	case NON_NUM:
+		break;
+	default:
+		throw(ScalarConverter::NotLiteralException());
+	}
+	_print();
+}
+
 /******************************************************************************/
 /*								  EXCEPTIONS								  */
 /******************************************************************************/
 
-const char *	Converter::NotLiteralException::what(void) const throw()
+const char *	ScalarConverter::NotLiteralException::what(void) const throw()
 {
 	return ("input given not a literal scalar type");
 }
