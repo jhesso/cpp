@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 19:33:42 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/19 18:39:31 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/19 18:47:18 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int	main(void)
 	{
 		std::cerr << RED << "Exception: " << e.what() << RESET << std::endl;
 	}
-	std::cout << YELLOW << "---- TEST CHAR ARRAY ----" << RESET << std::endl << std::endl;
+	std::cout << std::endl << YELLOW << "---- TEST CHAR ARRAY ----" << RESET << std::endl << std::endl;
 	Array<char>	charArr(22);
 	std::string s = "Yay I made a C string!";
 	for (unsigned int i = 0; i < charArr.size(); i++)
