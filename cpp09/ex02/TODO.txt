@@ -12,3 +12,7 @@ Algo:
 		- same here
 
 everything but the actual sorting is done (I think) :prayge:
+
+at least for now, 0 is not accepted as a valid number. should prolly check with
+some others and see what they think.
+	At least mcombeau and dgerguri both think that 0 is not valid
