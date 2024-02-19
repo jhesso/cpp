@@ -41,14 +41,6 @@ ScalarConverter::ScalarConverter(ScalarConverter const & src)
 		std::cout << "ScalarConverter copy constructor called" << std::endl;
 }
 
-ScalarConverter::ScalarConverter(std::string const & input)
-	:	_type(DEFAULT), _char(0), _int(0), _float(0), _double(0), _errorFlags(OK)
-{
-	if (MSG)
-		std::cout << "ScalarConverter input constructor called" << std::endl;
-	this->_convertScalar(input);
-}
-
 ScalarConverter::~ScalarConverter(void)
 {
 	if (MSG)
@@ -73,31 +65,6 @@ ScalarConverter &	ScalarConverter::operator=(ScalarConverter const & src)
 /******************************************************************************/
 /*							PRIVATE FUNCTIONS								  */
 /******************************************************************************/
-
-void	ScalarConverter::_convertScalar(std::string const & input)
-{
-	_getType(input);
-	switch (this->_type)
-	{
-	case INTEGER:
-		_castScalarInt();
-		break;
-	case FLOAT:
-		std::cout << "here" << std::endl;
-		_castScalarFloat();
-		break;
-	case DOUBLE:
-		_castScalarDouble();
-		break;
-	case CHARACTER:
-		_castScalarChar();
-		break;
-	case NON_NUM:
-		break;
-	default:
-		throw(ScalarConverter::NotLiteralException());
-	}
-}
 
 void	ScalarConverter::_getType(std::string const & input)
 {
@@ -322,28 +289,29 @@ void	ScalarConverter::_print(void)
 
 void	ScalarConverter::convert(std::string const & input)
 {
-	_getType(input);
-	switch (this->_type)
+	ScalarConverter converter;
+
+	converter._getType(input);
+	switch (converter._type)
 	{
 	case INTEGER:
-		_castScalarInt();
+		converter._castScalarInt();
 		break;
 	case FLOAT:
-		std::cout << "here" << std::endl;
-		_castScalarFloat();
+		converter._castScalarFloat();
 		break;
 	case DOUBLE:
-		_castScalarDouble();
+		converter._castScalarDouble();
 		break;
 	case CHARACTER:
-		_castScalarChar();
+		converter._castScalarChar();
 		break;
 	case NON_NUM:
 		break;
 	default:
 		throw(ScalarConverter::NotLiteralException());
 	}
-	_print();
+	converter._print();
 }
 
 /******************************************************************************/

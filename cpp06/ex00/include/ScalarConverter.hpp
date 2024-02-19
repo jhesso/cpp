@@ -52,7 +52,6 @@ class ScalarConverter
 		static float const	_floatMax;
 		static float const	_floatMin;
 
-		void	_convertScalar(std::string const & input);
 		void	_getType(std::string const & input);
 		bool	_getInt(std::string const & input);
 		bool	_getChar(std::string const & input);
@@ -73,15 +72,15 @@ class ScalarConverter
 
 		void	_print(void);
 
-	public:
 		ScalarConverter(void);
 		ScalarConverter(ScalarConverter const & src);
-		ScalarConverter(std::string const & input);
 		~ScalarConverter(void);
 
 		ScalarConverter &	operator=(ScalarConverter const & src);
 
-		void	convert(std::string const & input);
+	public:
+
+		static void	convert(std::string const & input);
 
 		class	NotLiteralException : public std::exception
 		{

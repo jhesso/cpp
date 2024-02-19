@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:33:34 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/19 15:03:52 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/19 15:49:07 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	main(int ac, char **av)
 	}
 	try
 	{
-		ScalarConverter converter;
-		converter.convert(av[1]);
+		// ScalarConverter converter;
+		ScalarConverter::convert(av[1]);
 		// std::cout << converter << std::endl;
 	}
 	catch(const std::exception& e)
