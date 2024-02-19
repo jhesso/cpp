@@ -90,5 +90,4 @@ class ScalarConverter
 		};
 };
 
-
 #endif
