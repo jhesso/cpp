@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 20:29:29 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/08 20:49:06 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/19 15:38:51 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,37 +35,37 @@ Base *	generate(void)
 	return NULL;
 }
 
-void	identify(Base * base)
+void	identify(Base * p)
 {
 	std::cout << "Identified as pointer: ";
-	if (dynamic_cast<A *>(base))
+	if (dynamic_cast<A *>(p) != nullptr)
 		std::cout << "A";
-	else if (dynamic_cast<B *>(base))
+	else if (dynamic_cast<B *>(p) != nullptr)
 		std::cout << "B";
-	else if (dynamic_cast<C *>(base))
+	else if (dynamic_cast<C *>(p) != nullptr)
 		std::cout << "C";
 	else
-		std::cout << "Unknown";
+		std::cout << "Unknown" << std::endl;
 }
 
-void	identify(Base & base)
+void	identify(Base & p)
 {
 	std::cout << "Identified as reference: ";
 	try
 	{
-		(void)dynamic_cast<A &>(base);
+		(void)dynamic_cast<A &>(p);
 		std::cout << "A";
 	}
 	catch(const std::exception& e){}
 	try
 	{
-		(void)dynamic_cast<B &>(base);
+		(void)dynamic_cast<B &>(p);
 		std::cout << "B";
 	}
 	catch(const std::exception& e){}
 	try
 	{
-		(void)dynamic_cast<C &>(base);
+		(void)dynamic_cast<C &>(p);
 		std::cout << "C";
 	}
 	catch(const std::exception& e){}
@@ -87,5 +87,7 @@ int	main(void)
 		delete base;
 		std::cout << std::endl;
 	}
+	std::cout << "testing with NULL" << std::endl;
+	identify(NULL);
 	return 0;
 }
