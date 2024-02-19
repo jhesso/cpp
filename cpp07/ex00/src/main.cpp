@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 11:18:07 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/13 13:24:45 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/19 18:07:38 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(void)
 	swap(i, j);
 	std::cout << "i = " << i << ", j = " << j << std::endl;
 
-	float	f = 15, f2 = 1;
+	float	f = 1.5, f2 = 1.0;
 
 	std::cout << std::endl << "---- TEST FLOATS ----" << std::endl << std::endl;
 	std::cout << "f = " << f << ", f2 = " << f2 << std::endl;
