@@ -1,0 +1,14 @@
+TODO:
+
+Input validation:
+	- [x] only accept positive numbers
+	- [x] no duplicates
+	- [x] handle integer overflows
+
+Algo:
+	- Vector:
+		- the whole fuckint thing :D
+	- List:
+		- same here
+
+everything but the actual sorting is done (I think) :prayge:
