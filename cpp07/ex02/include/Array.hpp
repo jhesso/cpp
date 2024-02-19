@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 19:34:04 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/14 23:03:17 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/19 18:49:12 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ class Array
 				}
 		};
 
-		T &	operator[](unsigned int index)
+		T &	operator[](unsigned int index) const
 		{
 			if (index >= this->_size)
 				throw (OutOfBoundsException());
