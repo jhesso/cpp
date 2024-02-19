@@ -6,13 +6,26 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 13:34:53 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/13 19:32:11 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/19 18:05:21 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <cstdlib>
 #include "iter.hpp"
+
+template <typename T>
+void	printArr(T * arr, size_t length)
+{
+	for (size_t i = 0; i < length; i++)
+		std::cout << "arr[" << i << "]: " << arr[i] << std::endl;
+}
+
+template <typename T>
+void	increment(T & i)
+{
+	i += 1;
+}
 
 void	halve(int & nb)
 {
@@ -31,6 +44,11 @@ void	toUpper(char & c)
 {
 	if (isalpha(c))
 		c -= 32;
+}
+
+void	print(int n)
+{
+	std::cout << n;
 }
 
 int	main(void)
@@ -66,6 +84,12 @@ int	main(void)
 	iter(charArr, (size_t)13, toUpper);
 	std::cout << std::endl << "Result:" << std::endl;
 	printArr(charArr, 13);
+
+	// int const iArr[5] = {1, 2, 3, 4, 5};
+
+	// std::cout << std::endl << std::endl;
+	// iter(iArr, 5, print);
+	// std::cout << std::endl;
 
 	return 0;
 }

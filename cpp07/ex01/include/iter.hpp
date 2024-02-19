@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 13:35:39 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/13 19:31:55 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/19 17:42:43 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,11 @@ void	iter(T * arr, size_t length, F func)
 		func(arr[i]);
 }
 
-template <typename T>
-void	increment(T & i)
-{
-	i += 1;
-}
-
-template <typename T>
-void	printArr(T * arr, size_t length)
+template <typename T, typename F>
+void	iter(const T * arr, size_t length, F const func)
 {
 	for (size_t i = 0; i < length; i++)
-		std::cout << "arr[" << i << "]: " << arr[i] << std::endl;
+		func(arr[i]);
 }
 
 #endif
