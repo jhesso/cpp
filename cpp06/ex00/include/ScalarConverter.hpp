@@ -83,11 +83,6 @@ class ScalarConverter
 
 		void	convert(std::string const & input);
 
-		// int		getInt(void) const;
-		// char	getChar(void) const;
-		// float	getFloat(void) const;
-		// double	getDouble(void) const;
-
 		class	NotLiteralException : public std::exception
 		{
 			public:
@@ -95,6 +90,5 @@ class ScalarConverter
 		};
 };
 
-// std::ostream &	operator<<(std::ostream & os, ScalarConverter const & converter);
 
 #endif

@@ -71,30 +71,6 @@ ScalarConverter &	ScalarConverter::operator=(ScalarConverter const & src)
 }
 
 /******************************************************************************/
-/*								GETTERS										  */
-/******************************************************************************/
-
-// int	ScalarConverter::getInt(void) const
-// {
-// 	return (this->_int);
-// }
-
-// char	ScalarConverter::getChar(void) const
-// {
-// 	return (this->_char);
-// }
-
-// float	ScalarConverter::getFloat(void) const
-// {
-// 	return (this->_float);
-// }
-
-// double	ScalarConverter::getDouble(void) const
-// {
-// 	return (this->_double);
-// }
-
-/******************************************************************************/
 /*							PRIVATE FUNCTIONS								  */
 /******************************************************************************/
 
@@ -339,30 +315,6 @@ void	ScalarConverter::_print(void)
 		std::cout << _float << "f";
 	std::cout << std::endl << "double: " << _double << std::endl;
 }
-
-// TODO: move this to a private function, then need to test everything
-// TODO: also remove the std::string constructor and call just the convert function from main
-//? can prolly just move this to a private printing function to make sure I follow the subj
-// std::ostream &	operator<<(std::ostream & os, ScalarConverter const & converter)
-// {
-// 	os << "char: ";
-// 	if (converter._isCharConversionOk())
-// 		os << "\'" << converter.getChar() << "\'";
-// 	else
-// 		os << converter._getCharConversionMessage();
-// 	os << std::endl << "int: ";
-// 	if (converter._isIntConversionOk())
-// 		os << converter.getInt();
-// 	else
-// 		os << converter._getIntConversionMessage();
-// 	os << std::endl << "float: ";
-// 	if (converter.getFloat() == static_cast<int>(converter.getFloat()))
-// 		os << std::fixed << std::setprecision(1) << converter.getFloat() << "f";
-// 	else
-// 		os << converter.getFloat() << "f";
-// 	os << std::endl << "double: " << converter.getDouble();
-// 	return os;
-// }
 
 /******************************************************************************/
 /*							PUBLIC FUNCTIONS								  */
