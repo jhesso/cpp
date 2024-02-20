@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 20:50:18 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/15 21:52:32 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/20 12:34:06 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,17 +107,13 @@ std::string	BitcoinExchange::formatDateTime(time_t date)
 
 void		BitcoinExchange::displayValue(time_t date, double value)
 {
-	double	nearestVal;
-	for (std::map<time_t, double>::iterator it = _rates.begin(); it != _rates.end(); it++)
-	{
-		if (it->first >= date)
-		{
-			if (it->first != date)
-				it--;
-			nearestVal = it->second;
-			break;
-		}
-	}
+	std::map<time_t, double>::iterator closestDate = _rates.lower_bound(date);
+	double	nearestVal = closestDate->second;
+
+	if (closestDate == _rates.begin() && date < closestDate->first)
+		nearestVal = 0;
+	else if (closestDate->first != date)
+		nearestVal = std::prev(closestDate)->second;
 	double result = nearestVal * value;
 	if (result < 0)
 		std::cerr << RED << "Error: not a positive number." << RESET << std::endl;
