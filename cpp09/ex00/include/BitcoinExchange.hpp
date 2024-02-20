@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 20:22:14 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/15 21:31:53 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/20 12:52:34 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class BitcoinExchange
 		time_t		convertTimeString(std::string date);
 		std::string	formatDateTime(time_t date);
 		void		displayValue(time_t date, double value);
+		double		convertStrToD(std::string val);
 
 	public:
 		BitcoinExchange(void);

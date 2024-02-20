@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 20:50:18 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/20 12:34:06 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/20 13:28:26 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void		BitcoinExchange::loadData(void)
 			time_t	date = convertTimeString(line.substr(0, line.find(",")));
 			if (date == -1)
 				throw (BitcoinExchange::InvalidFile());
-			double	value = std::stod(line.substr(line.find(",") + 1));
+				double	value = convertStrToD(line.substr(line.find(",") + 1));
 			if (value == -1)
 				throw (BitcoinExchange::InvalidFile());
 			_rates.insert(std::pair<time_t, double>(date, value));
@@ -123,6 +123,16 @@ void		BitcoinExchange::displayValue(time_t date, double value)
 		std::cout << formatDateTime(date) << " => " << value << " = " << result << std::endl;
 }
 
+double	BitcoinExchange::convertStrToD(std::string val)
+{
+	std::stringstream s;
+	s << val;
+	double n;
+	while (!(s >> n) || s.fail() || !s.eof())
+		throw std::runtime_error("Error: Invalid value");
+	return n;
+}
+
 /******************************************************************************/
 /*							PUBLIC FUNCTIONS								  */
 /******************************************************************************/
@@ -131,17 +141,26 @@ void	BitcoinExchange::calculateValues(std::string filename)
 {
 	try
 	{
+		double value;
 		std::ifstream file(filename);
 		if (!file.is_open())
 			throw (BitcoinExchange::InvalidFile());
 		std::string line;
 		std::getline(file, line);
 		if (line.compare("date | value") != 0)
-			throw (BitcoinExchange::InvalidFile());
+			std::cout << YELLOW << "Warning: File title missing or wrong" << RESET << std::endl;
 		while (std::getline(file, line))
 		{
 			time_t date = convertTimeString(line.substr(0, line.find(" |")));
-			double value = std::stod(line.substr(line.find("|") + 1));
+			try
+			{
+				value = convertStrToD(line.substr(line.find("|") + 1));
+			}
+			catch(const std::exception& e)
+			{
+				std::cout << RED << e.what() <<  RESET << std::endl;
+				continue;
+			}
 			if (date != -1)
 				displayValue(date, value);
 			else
