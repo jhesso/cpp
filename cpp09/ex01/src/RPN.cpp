@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:37:41 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/18 23:07:14 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/20 17:10:38 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ RPN &	RPN::operator=(RPN const & src)
 
 void	RPN::doOperator(std::string const & token)
 {
-	int	result;
+	double	result;
 	char op = token[0];
 
 	result = _stack.top();

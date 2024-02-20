@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:37:22 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/18 23:03:08 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/20 17:09:51 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class RPN
 		RPN(RPN const & src);
 		RPN &	operator=(RPN const & src);
 
-		std::stack<int>	_stack;
+		std::stack<double>	_stack;
 
 		void	doOperator(std::string const & operand);
 		void	insertSpaces(std::string & input);
