@@ -6,14 +6,15 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 23:40:04 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/20 01:08:13 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/20 17:03:01 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <vector>
-#include <list>
+#include <deque>
 #include <chrono>
+#include <sstream>
 #include "PmergeMe.hpp"
 
 #define MSG false
@@ -63,7 +64,7 @@ PmergeMe &	PmergeMe::operator=(PmergeMe const & src)
 	if (this != &src)
 	{
 		this->_vec = src._vec;
-		this->_list = src._list;
+		this->_deque = src._deque;
 	}
 	return (*this);
 }
@@ -75,8 +76,8 @@ PmergeMe &	PmergeMe::operator=(PmergeMe const & src)
 void	PmergeMe::sort(char ** av)
 {
 	std::chrono::high_resolution_clock::time_point vecStart, vecEnd,
-													listStart, listEnd;
-	std::chrono::duration<double, std::micro> vecTime, listTime;
+													dequeStart, dequeEnd;
+	std::chrono::duration<double, std::micro> vecTime, dequeTime;
 
 	std::cout << BLUE << "Sorting with std::vector" << RESET << std::endl;
 	std::cout << "Before: ";
@@ -90,20 +91,20 @@ void	PmergeMe::sort(char ** av)
 	printContainer(_vec);
 	std::cout << std::endl;
 
-	std::cout << BLUE << "Sorting with std::list" << RESET << std::endl;
+	std::cout << BLUE << "Sorting with std::deque" << RESET << std::endl;
 	std::cout << "Before: ";
-	listStart = std::chrono::high_resolution_clock::now();
-	validateInput(av, _list);
-	printContainer(_list);
-	sortList();
-	listEnd = std::chrono::high_resolution_clock::now();
-	listTime = listEnd - listStart;
+	dequeStart = std::chrono::high_resolution_clock::now();
+	validateInput(av, _deque);
+	printContainer(_deque);
+	sortDeque();
+	dequeEnd = std::chrono::high_resolution_clock::now();
+	dequeTime = dequeEnd - dequeStart;
 	std::cout << "After: ";
-	printContainer(_list);
+	printContainer(_deque);
 	std::cout << std::endl;
 
 	printTime("vec", vecTime);
-	printTime("list", listTime);
+	printTime("deque", dequeTime);
 }
 
 /*-------------------------------   Input   ----------------------------------*/
@@ -122,7 +123,7 @@ void	PmergeMe::validateInput(char **av, std::vector<int> & vec)
 	}
 }
 
-void	PmergeMe::validateInput(char **av, std::list<int> & list)
+void	PmergeMe::validateInput(char **av, std::deque<int> & deque)
 {
 	int	i = 1;
 	int	nb;
@@ -130,25 +131,20 @@ void	PmergeMe::validateInput(char **av, std::list<int> & list)
 	while (av[i])
 	{
 		nb = convertStringToInt(av[i]);
-		checkDuplicates(nb, list);
-		list.push_back(nb);
+		checkDuplicates(nb, deque);
+		deque.push_back(nb);
 		i++;
 	}
 }
 
 int	PmergeMe::convertStringToInt(std::string str)
 {
-	try
-	{
-		int nb = std::stoi(str);
-		if (nb < 1)
-			throw std::runtime_error("Error: Invalid input");
-		return nb;
-	}
-	catch(const std::exception& e)
-	{
+	std::stringstream s;
+	s << str;
+	int n;
+	while (!(s >> n) || s.fail() || !s.eof() || n <= 0)
 		throw std::runtime_error("Error: Invalid input");
-	}
+	return n;
 }
 
 void	PmergeMe::checkDuplicates(int const nb, std::vector<int> const & vec)
@@ -160,9 +156,9 @@ void	PmergeMe::checkDuplicates(int const nb, std::vector<int> const & vec)
 	}
 }
 
-void	PmergeMe::checkDuplicates(int const nb, std::list<int> const & list)
+void	PmergeMe::checkDuplicates(int const nb, std::deque<int> const & deque)
 {
-	for (std::list<int>::const_iterator it = list.begin(); it != list.end(); it++)
+	for (std::deque<int>::const_iterator it = deque.begin(); it != deque.end(); it++)
 	{
 		if (nb == *it)
 			throw std::runtime_error("Error: Duplicate input");
@@ -175,15 +171,134 @@ void	PmergeMe::sortVec(void)
 {
 	if (_vec.size() == 1)
 		return ;
-
+	// if given an odd amount of numbers, keep the last number in a variable
+	int	straggler = -1;
+	if (_vec.size() % 2)
+	{
+		straggler = _vec.back();
+		_vec.pop_back();
+	}
+	// pair up the numbers
+	std::vector<std::pair<int, int>> pairs = makePairs(_vec);
+	// sort the sequence recursively by the value of its largest pair
+	sortPairs(pairs, (pairs.size() - 1));
+	// create srted sequence from the pairs
+	sortSequence(pairs, straggler);
 }
 
-/*--------------------------------   List   ----------------------------------*/
-
-void	PmergeMe::sortList(void)
+std::vector<std::pair<int, int>>	PmergeMe::makePairs(std::vector<int> & vec)
 {
-	if (_list.size() == 1)
+	std::vector<std::pair<int, int>> pairs;
+	for (size_t i = 0; i < vec.size(); i += 2)
+	{
+		std::pair<int, int> pair = std::minmax(vec[i], vec[i + 1]);
+		pairs.push_back(pair);
+	}
+	return pairs;
+}
+
+void	PmergeMe::sortPairs(std::vector<std::pair<int, int>> & pairs, int len)
+{
+	if (len == 0)
 		return ;
+	sortPairs(pairs, len - 1);
+
+	std::pair<int, int> pair = pairs[len];
+	int i = len - 1;
+	while (i >= 0 && pairs[i].second > pair.second)
+	{
+		pairs[i + 1] = pairs[i];
+		i--;
+	}
+	pairs[i + 1] = pair;
+}
+
+void	PmergeMe::sortSequence(std::vector<std::pair<int, int>> & pairs, int straggler)
+{
+	_vec.clear();
+	std::vector<int> pend;
+
+	for (size_t i = 0; i < pairs.size(); i++)
+	{
+		_vec.push_back(pairs[i].second);
+		pend.push_back(pairs[i].first);
+	}
+	int s1 = pend.front();
+	pend.erase(pend.begin());
+	_vec.insert(_vec.begin(), s1);
+	if (straggler != -1)
+		pend.push_back(straggler);
+	for (int element : pend)
+	{
+		size_t pos = std::upper_bound(_vec.begin(), _vec.end(), element) - _vec.begin();
+		_vec.insert(_vec.begin() + pos, element);
+	}
+}
+
+/*-------------------------------   Deque   ----------------------------------*/
+
+void	PmergeMe::sortDeque(void)
+{
+	if (_deque.size() == 1)
+		return ;
+	int	straggler = -1;
+	if (_deque.size() % 2)
+	{
+		straggler = _deque.back();
+		_deque.pop_back();
+	}
+	std::deque<std::pair<int, int>> pairs = makePairs(_deque);
+	sortPairs(pairs, (pairs.size() - 1));
+	sortSequence(pairs, straggler);
+}
+
+std::deque<std::pair<int, int>>	PmergeMe::makePairs(std::deque<int> & deque)
+{
+	std::deque<std::pair<int, int>> pairs;
+	for (size_t i = 0; i < deque.size(); i += 2)
+	{
+		std::pair<int, int> pair = std::minmax(deque[i], deque[i + 1]);
+		pairs.push_back(pair);
+	}
+	return pairs;
+}
+
+void	PmergeMe::sortPairs(std::deque<std::pair<int, int>> & pairs, int len)
+{
+	if (len == 0)
+		return ;
+	sortPairs(pairs, len - 1);
+
+	std::pair<int, int> pair = pairs[len];
+	int i = len - 1;
+	while (i >= 0 && pairs[i].second > pair.second)
+	{
+		pairs[i + 1] = pairs[i];
+		i--;
+	}
+	pairs[i + 1] = pair;
+}
+
+void	PmergeMe::sortSequence(std::deque<std::pair<int, int>> & pairs, int straggler)
+{
+	_deque.clear();
+	std::deque<int> pend;
+
+	for (size_t i = 0; i < pairs.size(); i++)
+	{
+		_deque.push_back(pairs[i].second);
+		pend.push_back(pairs[i].first);
+	}
+	int s1 = pend.front();
+	pend.erase(pend.begin());
+	_deque.insert(_deque.begin(), s1);
+	if (straggler != -1)
+		pend.push_back(straggler);
+	for (int element : pend)
+	{
+		size_t pos = std::upper_bound(_deque.begin(), _deque.end(), element) - _deque.begin();
+		_deque.insert(_deque.begin() + pos, element);
+	}
 }
 
 /*-------------------------------   Print   ----------------------------------*/
@@ -196,9 +311,9 @@ void	PmergeMe::printContainer(std::vector<int> const & container)
 	std::cout << std::endl;
 }
 
-void	PmergeMe::printContainer(std::list<int> const & container)
+void	PmergeMe::printContainer(std::deque<int> const & container)
 {
-	for (std::list<int>::const_iterator it = container.begin(); it != container.end(); it++)
+	for (std::deque<int>::const_iterator it = container.begin(); it != container.end(); it++)
 		std::cout << *it << " ";
 
 	std::cout << std::endl;
@@ -210,7 +325,7 @@ void	PmergeMe::printTime(std::string type, std::chrono::duration<double, std::mi
 	if (type == "vec")
 		std::cout << _vec.size() << " elements with std::vector : ";
 	else
-		std::cout << _list.size() << " elements with std::list : ";
+		std::cout << _deque.size() << " elements with std::deque : ";
 	std::cout << time.count() << " us" << RESET << std::endl;
 
 }

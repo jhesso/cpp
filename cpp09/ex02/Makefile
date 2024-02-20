@@ -3,7 +3,7 @@ NAME		=	PmergeMe
 
 # Compiler and compilation flags
 CC			=	c++
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -std=c++11
 
 # Build files and directories
 SRC_PATH	=	src/
