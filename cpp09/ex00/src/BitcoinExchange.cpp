@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 20:50:18 by jhesso            #+#    #+#             */
-/*   Updated: 2024/02/20 13:28:26 by jhesso           ###   ########.fr       */
+/*   Updated: 2024/02/21 18:28:57 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void		BitcoinExchange::displayValue(time_t date, double value)
 	double result = nearestVal * value;
 	if (result < 0)
 		std::cerr << RED << "Error: not a positive number." << RESET << std::endl;
-	else if (result > 1000)
+	else if (value > 1000)
 		std::cerr << RED << "Error: too large a number." << RESET << std::endl;
 	else
 		std::cout << formatDateTime(date) << " => " << value << " = " << result << std::endl;
